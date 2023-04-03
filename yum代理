@@ -1,0 +1,35 @@
+#为yum源配置代理
+全局：
+假设我们想要为 /etc/yum.repos.d/ 下的所有仓库设置代理，则可以修改 /etc/yum.conf 文件，在该文件尾部添加如下一行：
+proxy=http://ip:port
+
+#为yum源配置代理
+特定仓库：
+[base]
+name=CentOS-$releasever - Base
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=os&infra=$infra
+baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+proxy=http://ip:port
+
+#released updates 
+[updates]
+name=CentOS-$releasever - Updates
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=updates&infra=$infra
+baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+#additional packages that may be useful
+[extras]
+name=CentOS-$releasever - Extras
+#mirrorlist=http://mirrorlist.centos.org/?release=$releasever&arch=$basearch&repo=extras&infra=$infra
+baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
+
+
+参照链接1:[https://pshizhsysu.gitbook.io/linux/yum/wei-yum-yuan-pei-zhi-dai-li]
+参照链接2:[https://www.kancloud.cn/pshizhsysu/linux/1799263]
